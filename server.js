@@ -16,7 +16,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://masjid-finder.vercel.app/', // Replace with your actual Vercel domain
+    /\.vercel\.app$/ // Allow all Vercel preview deployments
+  ],
+  credentials: true
+}));
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
